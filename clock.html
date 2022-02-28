@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+
+<body>
+
+    <style>
+        .clockBox {
+            margin: 100px auto;
+            width: 30%;
+            border: 1px solid #ccc;
+        }
+        
+        .ghori {
+            padding: 10px 50px;
+        }
+        
+        p {
+            font-size: 30px;
+        }
+    </style>
+
+    <div class="clockBox">
+        <div class="ghori">
+            <p class="time"></p>
+            <p class="day">Saptember, February 19</p>
+        </div>
+
+    </div>
+
+    <script>
+        function myClock() {
+            let myDate = new Date();
+            let hr = myDate.getHours();
+
+            if (myDate.getHours() == 0) {
+                hr = 12;
+            } else if (myDate.getHours() > 12) {
+                hr = myDate.getHours() - 12;
+            } else {
+                hr = myDate.getHours();
+            }
+
+            let m = myDate.getMinutes();
+            let s = myDate.getSeconds();
+
+            let min = (myDate.getMinutes() <= 10) ? "0" + myDate.getMinutes() : myDate.getMinutes();
+            let sec = (myDate.getSeconds() <= 10) ? "0" + myDate.getSeconds() : myDate.getSeconds();
+
+            let mn = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            let dn = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+
+
+            let currentTime = hr + " :" + " :" + min + " :" + sec;
+            let currentDaye = myDate.getDate() + " " + mn[myDate.getDay()] + ", " + dn[myDate.getDay()];
+
+            document.getElementsByClassName('time')[0].innerHTML = currentTime;
+            document.getElementsByClassName('day')[0].innerHTML = currentDaye;
+
+            console.log(hr);
+            console.log(m);
+            console.log(currentTime);
+        }
+
+        myClock();
+
+        setInterval(function() {
+            myClock();
+        }, 1000)
+    </script>
+
+</body>
+
+</html>
